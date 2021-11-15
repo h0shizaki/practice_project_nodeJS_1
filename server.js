@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path')
 const dotenv = require('dotenv');
 
 const app = express();
@@ -7,6 +8,9 @@ dotenv.config();
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+
+app.set('views', path.join(__dirname,'src','views'));
+app.set('view engine', 'ejs');
 
 //import route
 const indexRoute = require('./src/routes')

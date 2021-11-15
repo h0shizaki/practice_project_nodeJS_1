@@ -6,6 +6,11 @@ const middleware = require('../middleware/authCheck')
 //connect to DB
 const dbCon = require('../connection/connection')
 
-route.get('/', middleware.authMember,(req,res)=>res.send('Hello world'))
+route.get('/', middleware.authMember,(req,res)=>{
+    res.render('index.ejs' , {
+        title: "Index",
+        data: ""
+    })
+})
 
 module.exports =  route;
