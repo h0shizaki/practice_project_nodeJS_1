@@ -47,7 +47,7 @@ CREATE TABLE `member` (
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `username` varchar(30) NOT NULL,
-  `mem_password` varchar(30) NOT NULL,
+  `mem_password` varchar(100) NOT NULL,
   `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

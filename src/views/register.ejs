@@ -4,7 +4,7 @@
         <h2 style="margin-bottom: 1em;">Register Page</h2>
     
             <%if(message) {%>
-                <div class="alert alert-primary"> <%=message%> </div>
+                <div class="alert alert-danger"> <%=message%> </div>
             <%}%>
        
     </div>
@@ -18,11 +18,11 @@
             Last Name :
             <input type="text" name="last_name" required class='form form-control'> <br>
             Username :
-            <input type="text" name="username" required class='form form-control'> <br>
+            <input type="text" minlength='6' maxlength='20' name="username" required class='form form-control'> <br>
             Password :
-            <input type="password" name="password" required class='form form-control'> <br>
+            <input type="password" minlength='6' maxlength='20' name="password" required class='form form-control'> <br>
             Confirmed-Password :
-            <input type="password" name="conPassword" required class='form form-control'> <br>
+            <input type="password" minlength='6' maxlength='20' name="conPassword" required class='form form-control'> <br>
 
             <button class="btn btn-success" type="submit">Register</button>
 

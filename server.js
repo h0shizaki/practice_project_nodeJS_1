@@ -14,11 +14,13 @@ app.set('view engine', 'ejs');
 
 //import route
 const indexRoute = require('./src/routes/index')
-const memberRoute = require('./src/routes/memberRoute');
+const memberRoute = require('./src/routes/member');
+const bookRoute = require('./src/routes/books')
 
 
 app.use("/", indexRoute)
 app.use("/member", memberRoute)
+app.use('books', bookRoute)
 
 
 

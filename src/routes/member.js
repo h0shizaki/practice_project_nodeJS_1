@@ -1,6 +1,7 @@
 const route = require('express').Router()
 const dbCon = require('../connection/connection')
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 route.get('/register' , (req, res)=>{
     res.render('register.ejs', {
@@ -54,8 +55,30 @@ route.get('/login' , (req,res)=>{
     })
 })
 
-route.post('/login', (req,res)=>{
-    res.send(req.body) 
+route.post('/login', async(req,res)=>{
+
+    dbCon.query('SELECT * FROM member where username = ?',req.body.username, async(error,result,field)=>{
+        //Check username  
+        if(result.length != 1){
+            return res.render('login.ejs',{
+                title: 'ABS login',
+                data: '',
+                message:'Wrong username'
+            })
+        }
+
+        //Compare password
+        const validPass = await bcrypt.compare(req.body.password,result[0].mem_password);
+        if(!validPass) return res.render('login.ejs',{
+            title: 'ABS login',
+            data: '',
+            message:'Wrong password'
+        })
+
+
+        res.send({message:"Logged in..."})
+    })
+    
 })
 
 module.exports = route;
