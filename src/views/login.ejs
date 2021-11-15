@@ -1,0 +1,27 @@
+<%- include('partials/header.ejs') -%>
+<br>    
+    <div class="container">
+        <h2 style="margin-bottom: 1em;">Login Page</h2>
+    
+            <%if(message) {%>
+                <div class="alert alert-primary"> <%=message%> </div>
+            <%}%>
+       
+    </div>
+    <br>
+
+
+    <div class="container">
+        <form class='form form-control' method="POST" action="login">
+            Username :
+            <input type="text" name="username" required class='form form-control'> <br>
+            Password :
+            <input type="password" name="password" required class='form form-control'> <br>
+
+            <button class="btn btn-primary" type="submit">Login</button>
+
+        </form>
+    </div>
+    
+</body>
+</html>
