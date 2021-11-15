@@ -8,7 +8,7 @@ const dbCon = require('../connection/connection')
 
 route.get('/', middleware.authMember,(req,res)=>{
     res.render('index.ejs' , {
-        title: "Index",
+        title: "ABS Awesome Book Shop",
         data: ""
     })
 })
