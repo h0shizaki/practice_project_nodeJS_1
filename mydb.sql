@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `book` (
   `book_id` int(6) NOT NULL,
   `book_name` varchar(30) NOT NULL,
+  `book_url` varchar(60) NOT NULL,
   `book_price` int(6) NOT NULL,
   `book_status` int(1) NOT NULL,
   `add_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()

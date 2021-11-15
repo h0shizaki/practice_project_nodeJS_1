@@ -13,10 +13,12 @@ app.set('views', path.join(__dirname,'src','views'));
 app.set('view engine', 'ejs');
 
 //import route
-const indexRoute = require('./src/routes')
+const indexRoute = require('./src/routes/index')
+const memberRoute = require('./src/routes/memberRoute');
 
 
 app.use("/", indexRoute)
+app.use("/member", memberRoute)
 
 
 
