@@ -1,7 +1,9 @@
 class Auth{
 
     authMember(req,res,next){
-        console.log("USER PASS IN")
+
+
+        console.log(token + " PASS IN")
         next();
     }
 }

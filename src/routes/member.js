@@ -1,7 +1,7 @@
 const route = require('express').Router()
 const dbCon = require('../connection/connection')
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+
 
 route.get('/register' , (req, res)=>{
     res.render('register.ejs', {
@@ -75,8 +75,9 @@ route.post('/login', async(req,res)=>{
             message:'Wrong password'
         })
 
-
-        res.send({message:"Logged in..."})
+        //Create session
+        
+        return res.redirect('/home') 
     })
     
 })

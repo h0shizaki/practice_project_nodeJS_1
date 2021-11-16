@@ -1,8 +1,16 @@
 <%- include('partials/header.ejs') -%>
 <br>    
-    <h1><div class="container">
-        Welcome 
-    </h1></div>
+    <h3><div class="container">
+        Welcome <br>
+    </h3>
+        <div class="container" style="margin: 2em;">    
+                <%if(message) {%>
+                    <div class="alert alert-success"> <%=message%> </div>
+                <%}%>
+           
+        </div>
+
+    </div>
     
 </body>
 </html>
