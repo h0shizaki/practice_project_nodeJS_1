@@ -11,4 +11,5 @@
   > SSR
 
 ### STATUS : Pause
-  > I have a big problem I'll be back.
+  > I have a big problem I'll be back.  
+  > Project infrastructure problem
