@@ -1,10 +1,16 @@
 class Auth{
 
     authMember(req,res,next){
+        if(!req.session.isAuth || req.session.isAuth === undefined) return res.status(401).redirect('/')
 
-
-        console.log(token + " PASS IN")
         next();
+    }
+
+    authAdmin(req,res,next){
+        if(req.session.permission == 0){
+            return res.status(403).redirect('/')
+        }
+        next()
     }
 }
 

@@ -16,8 +16,11 @@ route.get('/', (req,res)=>{
 route.get('/home',middleware.authMember, (req,res)=>{
     res.render('home.ejs' , {
         title: "ABS Awesome Book Shop",
+        message:"welcome",
         data: ""
     })
 })
+
+route.get('/log' , middleware.authMember , (req,res)=> res.send(req.session))
 
 module.exports =  route;

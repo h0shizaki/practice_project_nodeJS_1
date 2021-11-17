@@ -47,6 +47,14 @@ route.post('/register' , async(req, res)=>{
     })
 })
 
+route.get('/logout' , (req,res)=>{
+    req.session.destroy( (error)=>{
+        if(error) return res.send(error).status(500)
+    })
+
+    res.redirect('/')
+})
+
 route.get('/login' , (req,res)=>{
     res.render('login.ejs',{
         title: 'ABS login',
@@ -76,7 +84,9 @@ route.post('/login', async(req,res)=>{
         })
 
         //Create session
-        
+        req.session.mem_id = result[0].mem_id ;
+        req.session.permission = result[0].mem_permission ;
+        req.session.isAuth = true;
         return res.redirect('/home') 
     })
     

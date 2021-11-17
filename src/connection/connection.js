@@ -1,10 +1,12 @@
 const mysql = require('mysql')
+const dotenv = require('dotenv');
+dotenv.config();
 
 const dbCon = mysql.createConnection({
-        host: "localhost",
-        user:'root',
-        password:"",
-        database: "myDB"
+        host: process.env.DB_HOST || "localhost",
+        user: process.env.DB_USER || "root",
+        password: process.env.DB_PASS || "",
+        database:process.env.DB_DBNAME || "mydb"
     })
 
 dbCon.connect( (err)=> {
