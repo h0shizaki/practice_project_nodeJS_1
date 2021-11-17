@@ -10,5 +10,5 @@
   > CRUD 
   > SSR
 
-### STATUS : Pause
-  > I have a big problem I'll be back.
+### STATUS : Working 
+  > ~~I have a big problem I'll be back.~~
