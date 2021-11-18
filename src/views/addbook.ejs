@@ -1,0 +1,37 @@
+<%- include('partials/header.ejs') -%>
+<br>    
+    <div class="container">
+        <h2 style="margin-bottom: 1em;">Add Book Page</h2>
+    
+            <%if(message) {%>
+                <div class="alert alert-danger"> <%=message%> </div>
+            <%}%>
+       
+    </div>
+    <br>
+
+    <div class="container">
+        <form action="../books/add" method="post" class='form form-control'>
+            Book Name :
+            <input class='form form-control' type="text" name='book_name'><br>
+
+            Book Price :
+            <input class='form form-control' type="number" name='book_price'><br>
+
+            Book cover URL :
+            <input class='form form-control' type="text" name='book_url'><br>
+
+            Book status :
+            <select class="form form-control" name="book_status">
+                <option value='1'>Have a product</option>
+                <option value='0'>Out of order</option>
+                
+            </select>
+            <br><br>
+            <button type="submit" class="btn btn-success">Add</button>
+            <br>
+        </form> 
+    </div>
+    
+</body>
+</html>

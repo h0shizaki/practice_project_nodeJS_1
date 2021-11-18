@@ -87,6 +87,7 @@ route.post('/login', async(req,res)=>{
         req.session.mem_id = result[0].mem_id ;
         req.session.permission = result[0].mem_permission ;
         req.session.isAuth = true;
+        if(result[0].mem_permission == 1) return res.redirect('/admin')
         return res.redirect('/home') 
     })
     

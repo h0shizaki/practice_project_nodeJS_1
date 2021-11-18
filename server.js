@@ -48,8 +48,7 @@ app.use( session({
 
 app.use("/", indexRoute)
 app.use("/member", memberRoute)
-app.use('books', bookRoute)
-
+app.use('/books', bookRoute)
 
 
 const PORT = process.env.PORT || 3000;
