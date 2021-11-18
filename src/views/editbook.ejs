@@ -1,0 +1,47 @@
+<%- include('partials/header.ejs') -%>
+<br>    
+    <div class="container">
+        <span style="float:right;"><a href="/books/dashboard">
+            <button class="btn btn-primary">Back</button> 
+        </a></span>   
+
+        <h2 style="margin-bottom: 1em;">Add Book Page</h2>
+    
+            <%if(message) {%>
+                <div class="alert alert-danger"> <%=message%> </div>
+            <%}%>
+
+    </div>
+    <br>
+
+    <div class="container">
+        <form action="/books/edit" method="post" class='form form-control'>
+            Book Name :
+            <input class='form form-control' type="text" name='book_name' value="<%=data.book_name%>" required><br>
+
+            Book Price :
+            <input class='form form-control' type="number" name='book_price' value="<%=data.book_price%>" required><br>
+
+            Book cover URL :
+            <input class='form form-control' type="text" name='book_url' value="<%=data.book_url%>" required><br>
+
+            Book status :
+            <select class="form form-control" name="book_status">
+                <%if(data.book_status == 1) {%>
+                    <option value='1' selected>In stock</option>
+                    <option value='0'>Out of stock</option>
+                <%}else{ %>
+                    <option value='1' >In stock</option>
+                    <option value='0' selected>Out of stock</option>
+                    <%}%>
+                
+            </select>
+            <input type="hidden" value="<%=data.book_id%>" name="book_id">
+            <br><br>
+            <button type="submit" class="btn btn-warning">Edit</button>
+            <br>
+        </form> 
+    </div>
+    
+</body>
+</html>

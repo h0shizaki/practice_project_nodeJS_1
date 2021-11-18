@@ -1,20 +1,56 @@
 <%- include('partials/header.ejs') -%>
 <br>    
     <h3><div class="container">
-
+        <span style="float:right;"><a href="../books/add">
+            <button class="btn btn-success">Add book</button> 
+        </a></span>
     </h3>
-        <div class="container" style="margin: 2em;">    
+        <div class="container" style="margin: 1em;margin-left:5em;font-size:medium">    
                 <%if(message) {%>
                     <div class="alert alert-success"> <%=message%> </div>
                 <%}%>
 
+                <div style="margin-left: 10%;"> <h2>Book Dashboard</h2> 
+                    
+                </div>
+
                 <%if(data.length === 0) {%>
                     <div class="container"> No book here please add it <a href="../books/add">HERE!</a> </div>
                 <%} else{%>
-
-                    <%=data%>
-
-                    <%}%>
+                    <div class="container" style="margin-left: 15%;">
+                        
+                        <table class='table talbe-bordered ' style="text-align: center;">
+                            <thead>
+                                <tr> 
+                                    <td><b>Cover</b></td>
+                                    <td><b>Name</b></td>
+                                    <td><b>Price</b></td>
+                                    <td><b>Status</b></td>
+                                    <td><b>Edit</b></td>
+                                    <td><b>Delete</b></td>
+                                 </tr>
+                            </thead>
+                        
+                        <tbody>
+                            <% data.forEach((book) =>{ %>
+                                <tr>
+                                    <td style="width:30%"><img src="<%=book.book_url%>"></td>
+                                    <td style="font-size: large;"><%=book.book_name%></td>
+                                    <td style="font-size: large;"><%=book.book_price%></td>
+                                    <td> <%if(book.book_status == 0) {%>
+                                            <b style="color: red;">Out of stock</b>
+                                        <%} else{%>
+                                            <b style="color: green;">In stock </b>
+                                        <%}%>
+                                    </td>
+                                    <td><a href="../books/edit/<%=book.book_id%>" class="btn btn-warning"> Edit </a></td>
+                                    <td><a href="../books/delete/<%=book.book_id%>" class="btn btn-danger"> Delete </a></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                        </table>
+                    </div>
+                <%}%>
            
         </div>
 
