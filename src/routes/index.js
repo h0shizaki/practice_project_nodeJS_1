@@ -14,11 +14,17 @@ route.get('/', (req,res)=>{
 })
 
 route.get('/home',middleware.authMember, (req,res)=>{
-    res.render('home.ejs' , {
-        title: "ABS Awesome Book Shop",
-        message:"welcome",
-        data: ""
+
+    dbCon.query("SELECT * FROM book", (error,result,field)=>{
+        if(error) return res.send({error:true, message:error}).status(502)
+
+        res.render('home.ejs' , {
+            title: "ABS Awesome Book Shop",
+            message:"Welcome",
+            data: result
+        })
     })
+   
 })
 
 module.exports =  route;

@@ -5,10 +5,39 @@
         <a href="member/logout"><button class='btn btn-danger'>logout</button></a>
     </div>
 
-    <div class="container" style="margin: 2em;margin-left: 15%;">    
+    <div class="container" style="margin: 2em;margin-left: 15%;text-align: center;">    
             <%if(message) {%>
                 <div class="alert alert-success"> <%=message%> </div>
             <%}%>
+
+            <%if(data.lenght == 0) {%>
+                No book    
+            <%} else{%>
+                <div class="card-group"style="width: 42rem;margin:1em;">
+                <%data.forEach( (book)=>{%>
+                        <div class="card" >
+                            <img src="<%=book.book_url%>" class="card-img-top"/>
+                            <div class="card-body">
+                                Name: <b><%=book.book_name%></b> <br>
+                                Price: <b><%=book.book_price%></b> <br>
+                                Status: <%if(book.book_status == 1) {%>
+                                            <b style="color:green;"> In stock</b><br>
+                                            <a href="order/buy/<%=book.book_id%>" style="margin:8em;">
+                                                <button class="btn btn-primary"> Buy </button>
+                                            </a>    
+                                        <%} else{%>
+                                            <b style="color:red;"> Out of stock</b><br>
+                                            <a style="margin:8em;" href="#">
+                                                <button class="btn btn-danger" disabled> Buy </button>
+                                            </a>   
+                                        <%}%>
+                                </div>
+                            </div>
+                 <%})%>
+                </div>
+            <%}%>
+
+
 
     </div>
 
