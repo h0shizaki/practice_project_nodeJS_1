@@ -28,7 +28,7 @@ const dbCon = require('../connection/connection')
         [req.body.book_name,req.body.book_url,req.body.book_price,req.body.book_status], (error, result, field)=>{
             if(error) return res.send({message: "Error" , data: error}).status(400);
             
-            res.send({message: "Success" , data: result})
+            res.redirect('/books/dashboard');
         })
 
     })
@@ -56,6 +56,14 @@ const dbCon = require('../connection/connection')
             if(error) return res.status(400).send({error: true, message:error})
 
             res.redirect('/books/dashboard');
+        })
+    })
+
+    route.get('/delete/:id' , middleware.authAdmin, (req,res)=>{
+        dbCon.query("DELETE FROM book where book_id = ?" , req.params.id , (error,result,field)=>{
+            if(error) return res.status(400).send({error: true , message: error});
+
+            res.redirect('/books/dashboard')
         })
     })
 

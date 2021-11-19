@@ -36,7 +36,7 @@ route.post('/register' , async(req, res)=>{
             dbCon.query("INSERT INTO member(first_name, last_name, username, mem_password) VALUES(?,?,?,?)",
             [req.body.first_name, req.body.last_name, req.body.username,hashedPassword],(error,result,field)=>{
                 if(error) throw error;
-                console.log(result)
+                // console.log(result)
                 res.render('login.ejs',{
                     title: 'ABS login',
                     data: '',

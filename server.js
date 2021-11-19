@@ -10,6 +10,9 @@ dotenv.config();
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
+//connect to Database
+const dbCon = require('./src/connection/connection');
+
 //set path
 app.set('views', path.join(__dirname,'src','views'));
 app.set('view engine', 'ejs');
@@ -18,7 +21,7 @@ app.set('view engine', 'ejs');
 const indexRoute = require('./src/routes/index')
 const memberRoute = require('./src/routes/member');
 const bookRoute = require('./src/routes/books');
-const dbCon = require('./src/connection/connection');
+const adminRoute = require('./src/routes/admin');
 
 //set session
 const sessionStore = new MySQLStore({
@@ -49,6 +52,7 @@ app.use( session({
 app.use("/", indexRoute)
 app.use("/member", memberRoute)
 app.use('/books', bookRoute)
+app.use('/admin', adminRoute)
 
 
 const PORT = process.env.PORT || 3000;

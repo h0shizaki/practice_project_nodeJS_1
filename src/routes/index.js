@@ -21,6 +21,4 @@ route.get('/home',middleware.authMember, (req,res)=>{
     })
 })
 
-route.get('/log' , middleware.authMember , (req,res)=> res.send(req.session))
-
 module.exports =  route;
