@@ -22,6 +22,8 @@ const indexRoute = require('./src/routes/index')
 const memberRoute = require('./src/routes/member');
 const bookRoute = require('./src/routes/books');
 const adminRoute = require('./src/routes/admin');
+const userRoute = require('./src/routes/user');
+const orderRoute = require('./src/routes/order')
 
 //set session
 const sessionStore = new MySQLStore({
@@ -53,6 +55,8 @@ app.use("/", indexRoute)
 app.use("/member", memberRoute)
 app.use('/books', bookRoute)
 app.use('/admin', adminRoute)
+app.use('/user', userRoute)
+app.use('/order', orderRoute)
 
 
 const PORT = process.env.PORT || 3000;
