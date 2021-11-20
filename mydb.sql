@@ -73,12 +73,9 @@ CREATE TABLE `member` (
 --
 -- Dumping data for table `member`
 --
-
 INSERT INTO `member` (`mem_id`, `first_name`, `last_name`, `username`, `mem_password`, `mem_permission`, `reg_date`) VALUES
-(1, 'aaaaaa', 'aaaaaa', 'aaaaaa', '$2a$10$T.N.xhCbGE6SSiH7YWN1KumxsJ9gAj6IZkJvl6ja/Gchog003UO8O', 0, '2021-11-17 09:08:53'),
-(2, 'eeeeee', 'eeeeee', 'eeeeee', '$2a$10$c1NwPjUb5.Svtifp0HZnZOw9poGc1uvlt8rMwhgNhi.pAEkmr4Ddq', 1, '2021-11-19 01:25:51');
-
--- --------------------------------------------------------
+(1, 'User123', 'User123', 'User123', '$2a$10$D4RI3YmfFHS2JRadGx7LaOGoaN2UHH.lx3OkgGvb3aWymgA5Apcpq', 0, '2021-11-20 07:18:21'),
+(2, 'admin123', 'admin123', 'admin123', '$2a$10$dxCgNP1GikfxmaLarDyi7.rV61/On6OZhOeSEjU0sPw5MwNyFLKaC', 1, '2021-11-20 07:18:24');
 
 --
 -- Table structure for table `orderlist`
