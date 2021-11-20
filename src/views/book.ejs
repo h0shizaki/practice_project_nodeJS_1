@@ -38,8 +38,8 @@
                         <tbody>
                             <% data.forEach((book) =>{ %>
                                 <tr>
-                                    <td style="width:30%"><img src="<%=book.book_url%>"></td>
-                                    <td style="font-size: large;"><%=book.book_name%></td>
+                                    <td style="width:10%"><img src="<%=book.book_url%>" style="width:80%"></td>
+                                    <td style="font-size: large;width:20%;"><%=book.book_name%></td>
                                     <td style="font-size: large;"><%=book.book_price%></td>
                                     <td> <%if(book.book_status == 0) {%>
                                             <b style="color: red;">Out of stock</b>

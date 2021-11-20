@@ -12,29 +12,36 @@
 
             <%if(data.lenght == 0) {%>
                 No book    
-            <%} else{%>
-                <div class="card-group"style="width: 42rem;margin:1em;">
-                <%data.forEach( (book)=>{%>
-                        <div class="card" >
-                            <img src="<%=book.book_url%>" class="card-img-top"/>
-                            <div class="card-body">
+            <%} else{ let count = 0; %>
+                <%data.forEach( (book,index)=>{ %>
+                    <%if(count == 0){ %>
+                        <div class="card-group" style="width: 100%;margin:1em;">
+                    <%}%>
+                        <div class="card" style="margin-top: 3%;" >
+                           <%count++%>
+                            <center>
+                                <img src="<%=book.book_url%>" class="card-img-top" style="margin: 5px;width: 80%;"/>
+                            </center>
+                            <div class="card-body" >     
                                 Name: <b><%=book.book_name%></b> <br>
                                 Price: <b><%=book.book_price%></b> <br>
                                 Status: <%if(book.book_status == 1) {%>
                                             <b style="color:green;"> In stock</b><br>
-                                            <a href="order/buy/<%=book.book_id%>" style="margin:8em;">
+                                            <a href="order/buy/<%=book.book_id%>" style="margin:2em;">
                                                 <button class="btn btn-primary"> Buy </button>
                                             </a>    
                                         <%} else{%>
                                             <b style="color:red;"> Out of stock</b><br>
-                                            <a style="margin:8em;" href="#">
+                                            <a style="margin:2em;" href="#">
                                                 <button class="btn btn-danger" disabled> Buy </button>
                                             </a>   
                                         <%}%>
                                 </div>
                             </div>
+                        <%if(count == 4){ count = 0%>    
+                        </div>
+                        <%}%>
                  <%})%>
-                </div>
             <%}%>
 
 

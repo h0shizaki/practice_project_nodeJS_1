@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2021 at 04:55 AM
+-- Generation Time: Nov 20, 2021 at 08:14 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -29,12 +29,30 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `book` (
   `book_id` int(6) NOT NULL,
-  `book_name` varchar(30) NOT NULL,
-  `book_url` varchar(20000) NOT NULL,
+  `book_name` varchar(80) NOT NULL,
+  `book_url` mediumtext NOT NULL,
   `book_price` int(6) NOT NULL,
   `book_status` int(1) NOT NULL,
   `add_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`book_id`, `book_name`, `book_url`, `book_price`, `book_status`, `add_date`) VALUES
+(5, 'ขุมทรัพย์สุดปลายฝัน', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786160451692_1.png', 220, 0, '2021-11-20 07:12:15'),
+(9, 'Ichigo Ichie ละเลียดปัจจุบัน ดื่มด่ำชีวิต', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786160452415.jpg', 250, 1, '2021-11-20 07:13:09'),
+(10, 'ยังไงฉันก็จะเลิกงานตรงเวลาค่ะ', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786168293249.png', 320, 1, '2021-11-20 06:40:54'),
+(11, 'เจ้าชายน้อย ฉบับ 2 ภาษา', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786164342569_1.jpg', 280, 0, '2021-11-20 06:43:35'),
+(12, 'แปดขุนเขา (ปกแข็ง)', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786169348795.png', 300, 0, '2021-11-20 06:43:51'),
+(13, 'เซเปียนส์: ประวัติย่อมนุษยชาติ', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786163016560.jpg', 520, 1, '2021-11-20 06:44:09'),
+(14, 'Aesthetica สาวใช้กับปริศนาคดีศิลป์ เล่ม 2', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786165723275.jpg', 285, 1, '2021-11-20 06:47:36'),
+(15, 'หนังสือเล่มหนึ่งซึ่งไม่มีวางขาย', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786161843397_1.png', 220, 1, '2021-11-20 06:48:16'),
+(16, 'ทะมงกับเด็กชายและความหมายของชีวิต', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786161843670.jpg', 285, 0, '2021-11-20 06:54:02'),
+(17, 'แด่เธอผู้เปล่งประกายใต้แสงจันทร์', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786161843229.jpg', 240, 1, '2021-11-20 06:54:19'),
+(18, 'โตเกียวทาวเวอร์แม่กับผมและพ่อในบางครั้งคราว', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786161842161_1.png', 300, 1, '2021-11-20 06:54:37'),
+(19, 'ฤดูร้อนครั้งต่อไป จะไม่ได้เจอกันอีกแล้วสินะ', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786165159043.png', 330, 0, '2021-11-20 06:54:51');
 
 -- --------------------------------------------------------
 
@@ -48,9 +66,17 @@ CREATE TABLE `member` (
   `last_name` varchar(30) NOT NULL,
   `username` varchar(30) NOT NULL,
   `mem_password` varchar(100) NOT NULL,
-  `mem_permission` int(1) NOT NULL DEFAULT "0",
+  `mem_permission` int(1) NOT NULL DEFAULT 0,
   `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `member`
+--
+
+INSERT INTO `member` (`mem_id`, `first_name`, `last_name`, `username`, `mem_password`, `mem_permission`, `reg_date`) VALUES
+(1, 'aaaaaa', 'aaaaaa', 'aaaaaa', '$2a$10$T.N.xhCbGE6SSiH7YWN1KumxsJ9gAj6IZkJvl6ja/Gchog003UO8O', 0, '2021-11-17 09:08:53'),
+(2, 'eeeeee', 'eeeeee', 'eeeeee', '$2a$10$c1NwPjUb5.Svtifp0HZnZOw9poGc1uvlt8rMwhgNhi.pAEkmr4Ddq', 1, '2021-11-19 01:25:51');
 
 -- --------------------------------------------------------
 
@@ -65,6 +91,18 @@ CREATE TABLE `orderlist` (
   `order_status` int(1) NOT NULL,
   `destination` varchar(50) NOT NULL,
   `oder_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `expires` int(11) UNSIGNED NOT NULL,
+  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -90,6 +128,12 @@ ALTER TABLE `orderlist`
   ADD PRIMARY KEY (`order_id`);
 
 --
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`session_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -97,13 +141,13 @@ ALTER TABLE `orderlist`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `book_id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `book_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `mem_id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `mem_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orderlist`
