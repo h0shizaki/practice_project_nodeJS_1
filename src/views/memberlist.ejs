@@ -1,0 +1,64 @@
+<%- include('partials/header.ejs') -%>
+<br>    
+        <div class="container" style="margin: 1em;margin-left:5em;font-size:medium">    
+
+                    <div class="container" style="text-align: left;">
+                        <a href="../admin"> <button class="btn btn-warning">Menu</button></a>
+                    </div>
+
+                <div style="margin-left: 10%;"> <h2><%=title%></h2><br> 
+                </div>
+
+                <%if(data.length === 0) {%>
+                    <div class="container">No data</div>
+                <%} else{%>
+                    <div class="container" style="margin-left: 15%;">
+                        
+                        <table class='table talbe-bordered ' style="text-align: center;">
+                            <thead>
+                                <tr> 
+                                    <td><b>ID</b></td>
+                                    <td><b>Username</b></td>
+                                    <td><b>First name</b></td>
+                                    <td><b>Last name</b></td>
+                                    <td><b>Permission</b></td>
+                                    <td><b>Edit</b></td>
+                                    <td><b>Delete</b></td>
+                                 </tr>
+                            </thead>
+                            <tbody>
+                            <%data.forEach( (member)=>{%> 
+                                <tr>
+                                    <td><%=member.mem_id%></td>
+                                    <td><%=member.username%></td>
+                                    <td><%=member.first_name%></td>
+                                    <td><%=member.last_name%></td>
+                                    <td><%if(member.mem_permission == 1){%> 
+                                            <b style="color: red;"> Admin</b>
+                                        <%}else{%> 
+                                            <b style="color: green;">User</b>
+                                        <%}%>
+                                    </td>
+                                    <td>
+                                        <a href="editmem/<%=member.mem_id%>"> 
+                                            <button class="btn btn-warning">Edit</button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="deletemem/<%=member.mem_id%>"> 
+                                            <button class="btn btn-danger">Delete</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <%})%>
+                            </tbody>
+                        </table>
+                    </div>
+                <%}%>
+           
+        </div>
+
+    </div>
+    
+</body>
+</html>

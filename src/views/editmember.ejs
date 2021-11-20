@@ -1,0 +1,44 @@
+<%- include('partials/header.ejs') -%>
+<br>    
+    <div class="container">
+        <h2 style="margin-bottom: 1em;"><%=title%></h2>
+
+        <span style="float:right;"><a href="/admin/dashboard">
+            <button class="btn btn-primary">Back</button> 
+        </a></span><br><br>   
+    
+            <%if(message) {%>
+                <div class="alert alert-danger"> <%=message%> </div>
+            <%}%>
+       
+    </div>
+    <br>
+
+
+    <div class="container">
+        <form class='form form-control' method="POST" action="/admin/editmem">
+            First Name :
+            <input type="text" name="first_name" required class='form form-control' value="<%=data.first_name%>"> <br>
+            Last Name :
+            <input type="text" name="last_name" required class='form form-control' value="<%=data.last_name%>"> <br>
+            Username :
+            <input type="text" minlength='6' maxlength='20' name="username" required class='form form-control' value="<%=data.username%>"> <br>
+            Premission : <select class="form form-control" name="permission">
+                <%if(data.mem_permission == 1){%>
+                    <option value="1" selected>Admin</option>
+                    <option value="0" >User</option>
+                <%} else{%>
+                    <option value="1" >Admin</option>
+                    <option value="0" selected>User</option>
+                <%}%>
+            </select><br>
+
+            <input type="hidden" value="<%=data.mem_id%>" name="mem_id">
+
+            <button class="btn btn-warning" type="submit">Edit</button>
+
+        </form>
+    </div>
+    
+</body>
+</html>
