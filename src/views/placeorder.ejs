@@ -1,0 +1,61 @@
+<%- include('partials/header.ejs') -%>
+    <br>
+    <div class="container">
+        <%if(message) {%>
+            <div class="alert alert-danger">
+                <%=message%>
+            </div>
+            <%}%>
+
+    </div>
+    <br>
+
+    <div class="container">
+        <h2><b>Your order</b></h2>
+        <table class="table table-bordered">
+            <tr style="text-align: center;">
+                <td>Your order</td>
+                <td>Order infomation</td>
+            </tr>
+            <tr>
+                <td style="width: 50%x;">
+                    <center>
+                    <div class="card" style="width: 300px;">
+                        <img src="<%=book_data.book_url%>" class="card-img-top" />
+                        <div class="card-body" style="text-align: left;">
+                            Name: <b>
+                                <%=book_data.book_name%>
+                            </b> <br>
+                            Price: <b>
+                                <%=book_data.book_price%>
+                            </b>
+                        </div>
+                    </div> 
+                    </center> 
+                </td>
+
+                <td style="width: 50%;">
+                    <div class="card" style="margin:1em;">
+                        <div class="card-body">
+                            <form action="placeorder" method="post" id="form">
+                                First name: <input name="first_name" type="text" value="<%=user_data.first_name%>" class="form form-control"><br>
+                                Last name: <input name="last_name" type="text" value="<%=user_data.last_name%>" class="form form-control"><br>
+                                Destination: <br><textarea style="width: 100%; max-height: 8em;" form="form" name="destination"> </textarea>
+                                <input type="hidden" value="<%=user_data.mem_id%>" name="mem_id">
+                                <input type="hidden" value="<%=book_data.book_id%>" name="book_id">
+                                <br>
+                                <button style="margin-top: 1em;"class="btn btn-success" type="submit">Order it!</button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+
+
+    </div>
+
+    </body>
+
+    </html>

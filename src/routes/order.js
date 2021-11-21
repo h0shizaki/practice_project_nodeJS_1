@@ -8,10 +8,19 @@ route.get('/buy/:book_id', middleware.authMember, async(req,res)=>{
         if(!result || !req.session) return res.status(400).send({error:true, message:"No data"});    
         
         await dbCon.query("SELECT * FROM member WHERE mem_id = ?",req.session.mem_id,(err, data)=>{
-            res.send({book_data: result, user_data: data})
+            res.render('placeorder.ejs',{
+                title: "Buy "+ result[0].book_name,
+                message: "",
+                user_data: data[0],
+                book_data: result[0]
+            })
         })
     
     })
+})
+
+route.post('/buy/placeorder' , middleware.authMember,(req,res)=>{
+    res.send(req.body)
 })
 
 module.exports = route
