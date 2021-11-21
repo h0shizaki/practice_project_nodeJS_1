@@ -40,7 +40,7 @@
                             <form action="placeorder" method="post" id="form">
                                 First name: <input name="first_name" type="text" value="<%=user_data.first_name%>" class="form form-control"><br>
                                 Last name: <input name="last_name" type="text" value="<%=user_data.last_name%>" class="form form-control"><br>
-                                Destination: <br><textarea style="width: 100%; max-height: 8em;" form="form" name="destination"> </textarea>
+                                Destination: <br><textarea required style="width: 100%; max-height: 8em;" form="form" name="destination"> </textarea>
                                 <input type="hidden" value="<%=user_data.mem_id%>" name="mem_id">
                                 <input type="hidden" value="<%=book_data.book_id%>" name="book_id">
                                 <br>

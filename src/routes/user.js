@@ -45,4 +45,8 @@ route.post('/changepassword', middleware.authMember, (req,res)=>{
 
 })
 
+route.get('/myorder', middleware.authMember, (req,res)=>{
+    res.send("Hello")
+})
+
 module.exports = route;

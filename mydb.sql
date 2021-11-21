@@ -85,8 +85,8 @@ CREATE TABLE `orderlist` (
   `order_id` int(6) NOT NULL,
   `mem_id` int(6) NOT NULL,
   `book_id` int(6) NOT NULL,
-  `order_status` int(1) NOT NULL,
-  `destination` varchar(50) NOT NULL,
+  `order_status` int(1) NOT NULL DEFAULT "0",
+  `destination` varchar(300) NOT NULL,
   `oder_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

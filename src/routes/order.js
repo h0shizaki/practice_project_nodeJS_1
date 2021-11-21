@@ -20,7 +20,27 @@ route.get('/buy/:book_id', middleware.authMember, async(req,res)=>{
 })
 
 route.post('/buy/placeorder' , middleware.authMember,(req,res)=>{
-    res.send(req.body)
+    const data = [
+        req.body.mem_id,
+        req.body.book_id,
+        req.body.destination
+    ]
+    
+    dbCon.query("INSERT INTO orderlist(mem_id, book_id, destination) VALUES(?,?,?)",data,(error,result,field)=>{
+        if(error) return res.status(500).send({error:true, message:error})
+
+        res.redirect('/home')
+    })
+})
+
+route.get('/dashboard' , middleware.authAdmin , (req,res)=>{
+    dbCon.query("SELECT * FROM ((orderlist INNER JOIN member ON member.mem_id = orderlist.mem_id) INNER JOIN book ON orderlist.book_id = book.book_id)",
+    (error ,result, field)=>{
+        if(error) return res.status(500).send({error: true , message:error});
+
+        res.send(result);
+
+    })
 })
 
 module.exports = route
