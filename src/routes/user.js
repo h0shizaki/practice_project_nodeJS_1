@@ -1,9 +1,48 @@
 const route = require('express').Router();
 const middleware = require('../middleware/authcheck')
 const dbCon = require('../connection/connection');
+const bcrypt = require('bcryptjs');
 
-route.get('/editinfo' , middleware.authMember, (req,res)=>{
-    res.send(req.session)
+route.get('/changepassword' , middleware.authMember, (req,res)=>{
+    
+    res.render('editselfinfo.ejs',{
+        title : "Change password",
+        message: "",
+        mem_id: req.session.mem_id
+    })
+})
+
+route.post('/changepassword', middleware.authMember, (req,res)=>{
+    const id = req.session.mem_id ;
+
+    dbCon.query("SELECT * FROM member WHERE mem_id = ?",id,async(error ,result, field)=>{
+        if(error) return res.send({error: true , message: error});
+
+        const checkPassword  = await bcrypt.compare(req.body.old_password,result[0].mem_password);
+        if(!checkPassword) return res.render('editselfinfo.ejs',{
+            title : "Change password",
+            message: "Old password not match",
+            mem_id: req.session.mem_id
+        })
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.new_password,salt)
+
+        dbCon.query("UPDATE member SET mem_password = ? WHERE mem_id = ?",[hashedPassword,id],(err,data)=>{
+            if(error) return res.send({error: true, message:err}).status(500)
+
+            req.session.destroy()
+            res.render('textpage.ejs',{
+                data: "",
+                title: "Password have been changed",
+                message: "Password changed successfully"
+            })
+            
+        })
+        
+
+    })
+
 })
 
 module.exports = route;

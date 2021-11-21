@@ -1,0 +1,33 @@
+<%- include('partials/header.ejs') -%>
+<br>    
+    <div class="container">
+        <h2 style="margin-bottom: 1em;"><%=title%></h2>
+
+        <span style="float:right;"><a href="/home">
+            <button class="btn btn-primary">Back</button> 
+        </a></span><br><br>   
+    
+            <%if(message) {%>
+                <div class="alert alert-danger"> <%=message%> </div>
+            <%}%>
+       
+    </div>
+    <br>
+
+
+    <div class="container">
+        <form class='form form-control' method="POST" action="changepassword">
+            Old password :
+            <input type="password" name="old_password" required class='form form-control' minlength="6" > <br>
+            New password :
+            <input type="password" name="new_password" required class='form form-control' minlength="6"> <br>
+
+            <input type="hidden" value="<%=mem_id%>" name="mem_id">
+
+            <button class="btn btn-warning" type="submit">Edit</button>
+
+        </form>
+    </div>
+    
+</body>
+</html>
