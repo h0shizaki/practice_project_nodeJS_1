@@ -1,0 +1,52 @@
+<%- include('partials/header.ejs') -%>
+<br>    
+        <div class="container" style="margin: 1em;margin-left:5em;font-size:medium;width:100%">    
+
+                    <div class="container" style="text-align: left;">
+                        <a href="../admin"> <button class="btn btn-warning">Menu</button></a>
+                    </div>
+
+                <div style="margin-left: 10%;"> <h2><%=title%></h2><br> 
+                </div>
+
+                <%if(data.length === 0) {%>
+                    <div class="container">No data</div>
+                <%} else{%>
+                    <div class="container" style="margin-left: 15%;width:100%;">
+                        
+                        <table class='table talbe-bordered' style="text-align: center;width: 100%;">
+                            <thead>
+                                <tr>
+                                    <td style="width: 10px;"><b>ID</b></td>
+                                    <td style="width: 10px;"><b>Book</b></td>
+                                    <td style="width: 15px;"><b>Book Name</b></td>
+                                    <td ><b>Buyer's Information</b></td>
+                                    <td><b>Setting</b></td>
+                                </tr>
+                            </thead>
+                            <%data.forEach( order=>{ %>
+                                <tr>
+                                    <td><%=order.order_id%></td>
+                                    <td><img src="<%=order.book_url%>" style="width:8em"></td>
+                                    <td><b><%=order.book_name%></b></td>
+                                    <td style="text-align: left;padding-left: 40px;"><b><%=order.first_name%>  <%=order.last_name%></b> <p><%=order.destination%></p></td>
+                                    <td>
+                                        <a href="<%if(order.order_status == 0){%>#<%} else{%>setOnPack/<%=order.order_id%><%}%>">
+                                            <button class="btn btn-primary" <%if(order.order_status == 0){%>disabled<%}%>>On packaging</button></a>
+                                        <a href="<%if(order.order_status == 1){%>#<%} else{%>setOnDeli/<%=order.order_id%><%}%>">
+                                            <button class="btn btn-success" <%if(order.order_status == 1){%>disabled<%}%>>On delivery</button></a>
+                                        <a href='delete/<%=order.order_id%>'><button class="btn btn-danger">Delete</button></a>
+                                        
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </table>
+                    </div>
+                <%}%>
+           
+        </div>
+
+    </div>
+    
+</body>
+</html>

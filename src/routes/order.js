@@ -38,7 +38,13 @@ route.get('/dashboard' , middleware.authAdmin , (req,res)=>{
     (error ,result, field)=>{
         if(error) return res.status(500).send({error: true , message:error});
 
-        res.send(result);
+        // console.log(result)
+
+        res.render('orderdashboard.ejs', {
+            title:"Order dashboard",
+            message: "",
+            data: result
+        })
 
     })
 })
