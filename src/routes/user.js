@@ -46,7 +46,17 @@ route.post('/changepassword', middleware.authMember, (req,res)=>{
 })
 
 route.get('/myorder', middleware.authMember, (req,res)=>{
-    res.send("Hello")
+    dbCon.query("SELECT * FROM ((orderlist INNER JOIN member ON member.mem_id = orderlist.mem_id AND orderlist.mem_id = ?) INNER JOIN book ON book.book_id = orderlist.book_id)",
+    req.session.mem_id,(error,result,field)=>{
+        if(error) return res.status(500).send({ error: true, message: error });
+
+        res.render('myorder.ejs',{
+            title : "My order",
+            message: "",
+            data: result
+        })
+    })
+    
 })
 
 module.exports = route;
