@@ -46,14 +46,22 @@ route.post('/changepassword', middleware.authMember, (req,res)=>{
 })
 
 route.get('/myorder', middleware.authMember, (req,res)=>{
-    dbCon.query("SELECT * FROM ((orderlist INNER JOIN member ON member.mem_id = orderlist.mem_id AND orderlist.mem_id = ?) INNER JOIN book ON book.book_id = orderlist.book_id)",
+    dbCon.query("SELECT * FROM ((orderlist INNER JOIN member ON member.mem_id = orderlist.mem_id AND orderlist.mem_id = ?) INNER JOIN book ON book.book_id = orderlist.book_id AND orderlist.order_status < 2)",
     req.session.mem_id,(error,result,field)=>{
         if(error) return res.status(500).send({ error: true, message: error });
 
-        res.render('myorder.ejs',{
-            title : "My order",
-            message: "",
-            data: result
+        dbCon.query("SELECT * FROM ((orderlist INNER JOIN member ON member.mem_id = orderlist.mem_id AND orderlist.mem_id = ?) INNER JOIN book ON book.book_id = orderlist.book_id AND orderlist.order_status > 1)",
+        req.session.mem_id,(err,oldOrder)=>{
+
+            if(err) return res.status(500).send({ error: true, message: err });
+
+            res.render('myorder.ejs',{
+                title : "My order",
+                message: "",
+                data: result,
+                old_data : oldOrder
+            })
+
         })
     })
     

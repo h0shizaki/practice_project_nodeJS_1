@@ -1,7 +1,13 @@
 # Practice Project
-**Finished Feature**    
-  > Login system using express-session  
-  > CRUD on books and display it  
+
+**How to open**    
+  1. Download this repo.  
+  2. Import mydb.sql to your database.    
+  3. Setting database config on .env file.    
+  4. Open the project folder.  
+  5. ``` npm install```  
+  6. ``` npm run dev ```  
+
 
   **Using :**
   > NodeJS
@@ -9,13 +15,7 @@
   > MySQL
   > EJS
 
-## Practice topic
-  > AUTH
-  > CRUD 
-  > SSR
+### STATUS : Done 
+  > Finished  
 
-
-### STATUS : Working 
-  > 1/3 Finished  
-  > ~~I have a big problem I'll be back.~~
 

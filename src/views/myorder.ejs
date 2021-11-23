@@ -52,14 +52,50 @@
                                             <a href="#" >
                                                 <button class="btn btn-success"disabled>Recieved</button></a>
                                             <%} else{%>
-                                                <a href="order/confirm/<%=order.oder_id%>" ><button class="btn btn-success" >Recieved</button></a>
+                                                <a href="/order/confirm/<%=order.order_id%>" ><button class="btn btn-success" >Recieved</button></a>
                                             <%}%>
+                                        
                                     </td>
                                 </tr>
                             <% }) %>
                         </table>
                     </div>
                 <%}%>
+
+
+                <b style="margin: 2em;"> <h2>Sended Or Cancel Order</h2></b>
+                <div class="container" style="margin-left: 15%;width:100%;">
+                            
+                    <table class='table talbe-bordered' style="text-align: center;width: 100%;">
+                        <thead>
+                            <tr>
+                                <td ><b>ID</b></td>
+                                <td style="width: 10px;"><b>Book</b></td>
+                                <td ><b>Book Name</b></td>
+                                <td ><b>Buyer's Information</b></td>
+                                <td><b>Status</b></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%old_data.forEach( oldOrder=>{ %>
+                                <tr>
+                                    <td><%=oldOrder.order_id%></td>
+                                    <td><img src="<%=oldOrder.book_url%>" style="width:8em"></td>
+                                    <td><b><%=oldOrder.book_name%></b></td>
+                                    <td style="text-align: left;padding-left: 40px;"><b><%=oldOrder.first_name%>  <%=oldOrder.last_name%></b> <p><%=oldOrder.destination%></p></td>
+                                    <td>
+                                        <%if(oldOrder.order_status == 2){%>
+                                                <b style="color: green;">Recieved</b>
+                                            <%}%>
+                                        <%if(oldOrder.order_status == 3) {%>
+                                                <b style="color: red;">Canceled</b>
+                                            <%}%>
+
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
                     
 
 

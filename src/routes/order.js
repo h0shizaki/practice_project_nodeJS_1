@@ -30,7 +30,7 @@ route.post('/buy/placeorder', middleware.authMember, (req, res) => {
     const data = [
         req.body.mem_id,
         req.body.book_id,
-        req.body.destination
+        req.body.destination + "\n" + req.body.first_name+" " + req.body.last_name
     ]
 
     dbCon.query("INSERT INTO orderlist(mem_id, book_id, destination) VALUES(?,?,?)", data, (error, result, field) => {
@@ -84,6 +84,14 @@ route.get('/setCancel/:id', middleware.authAdmin, (req, res) => {
         if (error) return res.status(500).send({ error: true, message: error });
 
         res.redirect('/order/dashboard')
+    })
+})
+
+route.get('/confirm/:id' , middleware.authMember, (req,res)=>{
+    dbCon.query("UPDATE orderlist SET order_status = ? WHERE order_id = ?",[2,req.params.id],(error,result,field)=>{
+        if (error) return res.status(500).send({ error: true, message: error });
+
+        res.redirect('/user/myorder')
     })
 })
 

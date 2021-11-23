@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2021 at 08:14 AM
+-- Generation Time: Nov 23, 2021 at 12:11 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -41,7 +41,7 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`book_id`, `book_name`, `book_url`, `book_price`, `book_status`, `add_date`) VALUES
-(5, 'ขุมทรัพย์สุดปลายฝัน', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786160451692_1.png', 220, 0, '2021-11-20 07:12:15'),
+(5, 'ขุมทรัพย์สุดปลายฝัน', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786160451692_1.png', 220, 1, '2021-11-21 07:55:14'),
 (9, 'Ichigo Ichie ละเลียดปัจจุบัน ดื่มด่ำชีวิต', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786160452415.jpg', 250, 1, '2021-11-20 07:13:09'),
 (10, 'ยังไงฉันก็จะเลิกงานตรงเวลาค่ะ', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786168293249.png', 320, 1, '2021-11-20 06:40:54'),
 (11, 'เจ้าชายน้อย ฉบับ 2 ภาษา', 'https://readery.co/media/catalog/product/cache/1/small_image/360x/17f82f742ffe127f42dca9de82fb58b1/9/7/9786164342569_1.jpg', 280, 0, '2021-11-20 06:43:35'),
@@ -65,7 +65,7 @@ CREATE TABLE `member` (
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `username` varchar(30) NOT NULL,
-  `mem_password` varchar(200) NOT NULL,
+  `mem_password` varchar(300) NOT NULL,
   `mem_permission` int(1) NOT NULL DEFAULT 0,
   `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -73,9 +73,12 @@ CREATE TABLE `member` (
 --
 -- Dumping data for table `member`
 --
+
 INSERT INTO `member` (`mem_id`, `first_name`, `last_name`, `username`, `mem_password`, `mem_permission`, `reg_date`) VALUES
-(1, 'User123', 'User123', 'User123', '$2a$10$D4RI3YmfFHS2JRadGx7LaOGoaN2UHH.lx3OkgGvb3aWymgA5Apcpq', 0, '2021-11-20 07:18:21'),
+(1, 'User123', 'User123', 'User123', '$2a$10$D4RI3YmfFHS2JRadGx7LaOGoaN2UHH.lx3OkgGvb3aWymgA5Apcpq', 0, '2021-11-20 08:08:55'),
 (2, 'admin123', 'admin123', 'admin123', '$2a$10$dxCgNP1GikfxmaLarDyi7.rV61/On6OZhOeSEjU0sPw5MwNyFLKaC', 1, '2021-11-20 07:18:24');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `orderlist`
@@ -85,7 +88,7 @@ CREATE TABLE `orderlist` (
   `order_id` int(6) NOT NULL,
   `mem_id` int(6) NOT NULL,
   `book_id` int(6) NOT NULL,
-  `order_status` int(1) NOT NULL DEFAULT "0",
+  `order_status` int(1) NOT NULL DEFAULT 0,
   `destination` varchar(300) NOT NULL,
   `oder_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
